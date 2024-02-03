@@ -4,11 +4,12 @@ from config import AppConfigs
 import base64
 import json
 
+HOST = AppConfigs().GITEA_HOST
 USERNAME = AppConfigs().GITEA_USERNAME
 PASSWORD = AppConfigs().GITEA_PASSWORD
 
 def get_data():
-    url = f"https://git.de-cloak.com/api/v1/users/{USERNAME}/activities/feeds?limit=5&date=2024-01-29"
+    url = f"{HOST}/api/v1/users/{USERNAME}/activities/feeds?limit=5&date=2024-01-29"
 
     basic_auth = base64.b64encode(f"{USERNAME}:{PASSWORD}".encode()).decode()
     print(basic_auth)
@@ -32,7 +33,7 @@ def get_data():
     print(content["Commits"][0]["Sha1"])
     print(content["Commits"][0]["Message"])
     print(content["Commits"][0]["Timestamp"])
-    print(content["CompareURL"])
+    print(f'{HOST}/{content["CompareURL"]}')
 
     # print(json.dumps(content, indent=4, sort_keys=True))
 

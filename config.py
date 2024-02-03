@@ -2,6 +2,7 @@ from pydantic_settings import BaseSettings
 from pathlib import Path
 
 class AppConfigs(BaseSettings):
+    GITEA_HOST: str
     GITEA_USERNAME: str
     GITEA_PASSWORD: str
 
